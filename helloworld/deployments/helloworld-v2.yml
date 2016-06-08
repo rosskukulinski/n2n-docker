@@ -1,0 +1,38 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: helloworld
+  labels:
+    app: helloworld
+    track: stable
+spec:
+  replicas: 5
+  template:
+    metadata:
+      labels:
+        app: helloworld
+        track: stable
+    spec:
+      containers:
+        - name: helloworld
+          image: rosskukulinski/helloworld:v2.0.0
+          ports:
+            - containerPort: 3000
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 3000
+            initialDelaySeconds: 5
+            timeoutSeconds: 5
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: 3000
+            initialDelaySeconds: 2
+            timeoutSeconds: 5
+        - image: redis:2.8.22
+          name: redis
+          ports:
+            - containerPort: 6379
+              protocol: TCP
