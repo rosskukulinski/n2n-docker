@@ -69,7 +69,7 @@ less deployments/helloworld-v1.yml
 ```
 
 ```
-kubectl create -f deployments/helloworld.yml
+kubectl create -f deployments/helloworld-v1.yml
 ```
 
 ```
