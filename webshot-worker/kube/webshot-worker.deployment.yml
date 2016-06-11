@@ -1,21 +1,21 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: helloworld-canary
+  name: webshot-worker
   labels:
-    app: helloworld
-    track: canary
+    app: webshot-worker
+    track: stable
 spec:
   replicas: 1
   template:
     metadata:
       labels:
-        app: helloworld
-        track: canary
+        app: webshot-worker
+        track: stable
     spec:
       containers:
-        - name: helloworld
-          image: rosskukulinski/helloworld:v2.0.0
+        - name: webshot-worker
+          image: rosskukulinski/webshot-worker:latest
           ports:
             - containerPort: 3000
               protocol: TCP
@@ -31,8 +31,3 @@ spec:
               port: 3000
             initialDelaySeconds: 2
             timeoutSeconds: 5
-        - image: redis:2.8.22
-          name: redis
-          ports:
-            - containerPort: 6379
-              protocol: TCP

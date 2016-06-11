@@ -1,0 +1,15 @@
+kind: NamespaceList
+apiVersion: v1
+items:
+  - kind: Namespace
+    apiVersion: v1
+    metadata:
+      name: webshot-staging
+      labels:
+        name: webshot-staging
+  - kind: Namespace
+    apiVersion: v1
+    metadata:
+      name: webshot-production
+      labels:
+        name: webshot-prodution
