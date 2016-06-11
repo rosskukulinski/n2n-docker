@@ -1,10 +1,15 @@
 {
   "name": "webshot-worker",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Service to capture requests for image capture",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "sha": "echo $(git rev-parse HEAD)",
+    "docker-build": "docker build -t rosskukulinski/webshot-worker .",
+    "docker-tag-sha": "docker tag -f rosskukulinski/webshot-worker:latest rosskukulinski/webshot-worker:$(git rev-parse HEAD)",
+    "docker-push": "docker push rosskukulinski/webshot-worker:$(git rev-parse HEAD)",
+    "docker-all": "npm run docker-build && npm run docker-tag-sha && npm run docker-push"
   },
   "repository": "https://github.com/rosskukulinski/n2n-docker",
   "author": "Ross Kukulinski <ross@nodesource.com>",
