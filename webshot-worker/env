@@ -1,0 +1,7 @@
+#!/bin/sh
+EXTERNAL_REGISTRY_ENDPOINT='rosskukulinski'
+KUBECONTEXTQA='webshot-staging'
+KUBECONTEXTPROD='webshot-production'
+KUBEDEPLOYMENTDIR='./kube'
+CONTAINER='webshot-worker'
+SERVICENAME='webshot-worker1'
