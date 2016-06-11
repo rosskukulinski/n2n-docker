@@ -9,7 +9,7 @@
     "docker-build": "docker build -t rosskukulinski/webshot-worker .",
     "docker-tag-sha": "docker tag -f rosskukulinski/webshot-worker:latest rosskukulinski/webshot-worker:$(git rev-parse HEAD)",
     "docker-push": "docker push rosskukulinski/webshot-worker:$(git rev-parse HEAD)",
-    "docker-all": "npm run docker-build && npm run docker-tag-sha && npm run docker-push"
+    "docker-all": "npm run docker-build && npm run docker-tag-sha && npm run docker-push",
   },
   "repository": "https://github.com/rosskukulinski/n2n-docker",
   "author": "Ross Kukulinski <ross@nodesource.com>",
