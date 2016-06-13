@@ -15,6 +15,7 @@ spec:
     spec:
       containers:
         - name: webshot-worker
+          imagePullPolicy: Always
           image: rosskukulinski/webshot-worker:latest
           env:
           - name: GCLOUD_PROJECT

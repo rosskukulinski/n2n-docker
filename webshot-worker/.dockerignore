@@ -1,3 +1,6 @@
 node_modules
 *.yml
 deployments
+kube
+script
+svc
