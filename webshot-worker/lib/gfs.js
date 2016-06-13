@@ -5,8 +5,10 @@ var keyFilePath = process.env.GCLOUD_KEYFILE;
 var gopts = {};
 if (projectId) {
   gopts.projectId = projectId;
-  gopts.keyFilePath = keyFilePath;
+  gopts.keyFilename = keyFilePath;
 }
+
+console.log(gopts);
 
 var bucketName = 'waybackmachine';
 
@@ -33,7 +35,7 @@ bucket.acl.default.add({
   role: gcs.acl.READER_ROLE
 }, function(err) {
   if (err) {
-    console.log('error setting bucket permissions');
+    return console.log('error setting bucket permissions');
   }
   console.log('bucket set to READER_ROLE for allUsers');
 });

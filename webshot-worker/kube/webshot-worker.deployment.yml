@@ -23,6 +23,8 @@ spec:
               secretKeyRef:
                 name: gcloud-bucket
                 key: gcloud-project
+          - name: GCLOUD_KEYFILE
+            value: /var/gcloud/gcloud.json
           volumeMounts:
           - mountPath: /var/gcloud
             name: gcloud-bucket
