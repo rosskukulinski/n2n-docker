@@ -24,7 +24,7 @@ spec:
                 key: gcloud-project
           volumeMounts:
           - mountPath: /var/gcloud
-            name: ssl-volume
+            name: gcloud-bucket
           ports:
             - containerPort: 3000
               protocol: TCP
