@@ -16,6 +16,15 @@ spec:
       containers:
         - name: webshot-worker
           image: rosskukulinski/webshot-worker:latest
+          env:
+          - name: GCLOUD_PROJECT
+            valueFrom:
+              secretKeyRef:
+                name: gcloud-bucket
+                key: gcloud-project
+          volumeMounts:
+          - mountPath: /var/gcloud
+            name: ssl-volume
           ports:
             - containerPort: 3000
               protocol: TCP
@@ -31,3 +40,7 @@ spec:
               port: 3000
             initialDelaySeconds: 2
             timeoutSeconds: 5
+      volumes:
+      - name: gcloud-bucket
+        secret:
+          secretName: gcloud-bucket

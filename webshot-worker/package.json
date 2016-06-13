@@ -1,6 +1,6 @@
 {
   "name": "webshot-worker",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Service to capture requests for image capture",
   "main": "index.js",
   "scripts": {
@@ -16,6 +16,7 @@
   "license": "MIT",
   "dependencies": {
     "dnscache": "0.0.4",
+    "gcloud": "^0.36.0",
     "pkginfo": "^0.4.0",
     "restify": "^4.1.0",
     "valid-url": "^1.0.9",
