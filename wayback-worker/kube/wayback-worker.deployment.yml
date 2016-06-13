@@ -1,22 +1,22 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: webshot-worker
+  name: wayback-worker
   labels:
-    app: webshot-worker
+    app: wayback-worker
     track: stable
 spec:
   replicas: 1
   template:
     metadata:
       labels:
-        app: webshot-worker
+        app: wayback-worker
         track: stable
     spec:
       containers:
-        - name: webshot-worker
+        - name: wayback-worker
           imagePullPolicy: Always
-          image: rosskukulinski/webshot-worker:latest
+          image: rosskukulinski/wayback-worker:latest
           env:
           - name: GCLOUD_PROJECT
             valueFrom:

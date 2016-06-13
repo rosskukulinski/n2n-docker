@@ -1,4 +1,4 @@
-Simple Webshot app
+Simple wayback app
 
 ## HTTP API
 
@@ -11,5 +11,6 @@ Returns 500 with error message if not healthy
 
 ### GET /?url=https://github.com/rosskukulinski
 
-Requests a new screenshot of the specified page.  The raw png image is
-streamed back.
+Requests a new screenshot of the specified page.  The png image
+is uploaded to Google Storage Engine and the public URL is returned
+along with the timestamp.
