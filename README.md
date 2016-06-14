@@ -69,6 +69,16 @@ kubectl get pods
 kubectl describe pods <pod>
 ```
 
+## Running Adhoc Commands
+```
+kubectl exec <pod> -c helloworld -- node -v
+```
+
+## Logs
+```
+kubectl logs -f <pod> redis
+```
+
 ## Port Forwarding
 
 ### Terminal 1
@@ -79,16 +89,6 @@ kubectl port-forward <pod> 5000:3000
 ### Terminal 2
 ```
 curl http://127.0.0.1:5000
-```
-
-## Running Adhoc Commands
-```
-kubectl exec <pod> -c helloworld -- node -v
-```
-
-## Logs
-```
-kubectl logs -f <pod> redis
 ```
 
 ## Scaling out
