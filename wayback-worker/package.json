@@ -15,6 +15,7 @@
   "author": "Ross Kukulinski <ross@nodesource.com>",
   "license": "MIT",
   "dependencies": {
+    "bull": "^1.0.0-rc2",
     "dnscache": "0.0.4",
     "gcloud": "^0.36.0",
     "pkginfo": "^0.4.0",

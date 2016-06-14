@@ -36,14 +36,6 @@ curl http://127.0.0.1:3000/version
 http://127.0.0.1:3000/healthz
 ```
 
-```
-redis-server
-```
-
-```
-curl http://127.0.0.1:3000/healthz
-```
-
 ## Building Containers with Docker
 
 ```
@@ -64,16 +56,9 @@ docker push rosskukulinski/helloworld:v1.0.0
 
 ## Deploying Containers with Kubernetes
 
-```
-less deployments/helloworld-v1.yml
-```
 
 ```
-kubectl create -f deployments/helloworld-v1.yml
-```
-
-```
-kubectl describe deployments/helloworld
+kubectl run helloworld --image=rosskukulinski/helloworld:v1.0.0 --port=3000 --replicas=3 --labels=app=helloworld
 ```
 
 ```
@@ -82,10 +67,6 @@ kubectl get pods
 
 ```
 kubectl describe pods <pod>
-```
-
-```
-curl http://<podip>
 ```
 
 ## Port Forwarding
@@ -108,20 +89,6 @@ kubectl exec <pod> -c helloworld -- node -v
 ## Logs
 ```
 kubectl logs -f <pod> redis
-```
-
-## Troubleshooting
-
-```
-kubectl get pods
-```
-
-```
-kubectl label pods <pod> track-
-```
-
-```
-kubectl label pods <pod> track=stable
 ```
 
 ## Scaling out
@@ -148,12 +115,77 @@ kubectl describe svc helloworld
 ```
 
 ```
-curl http://<node-public-ip>:30000/version
+kubectl run busybox --image=odise/busybox-curl sleep 600
 ```
 
 ```
-curl http://<lb-public-ip>/version
+kubectl exec -ti <pod-name> /bin/sh
 ```
+
+```
+curl helloworld
+```
+
+```
+curl helloworld/version
+```
+
+```
+curl http://<lb-public-ip>/
+```
+
+### Rolling Update
+
+```
+while true; do curl http://<lb-public-ip>/version; sleep .5; done
+```
+
+```
+kubectl edit deployment/helloworld
+```
+
+```
+kubectl rollout undo deployment/helloworld
+```
+
+
+## Not needed during Need2Node Webinar
+
+
+### Skip These
+```
+less deployments/helloworld-v1.yml
+```
+
+```
+kubectl create -f deployments/helloworld-v1.yml
+```
+
+```
+kubectl describe deployments/helloworld
+```
+
+```
+curl http://<podip>
+```
+
+
+
+
+## Troubleshooting
+
+```
+kubectl get pods
+```
+
+```
+kubectl label pods <pod> track-
+```
+
+```
+kubectl label pods <pod> track=stable
+```
+
 
 ## Canary Pattern
 

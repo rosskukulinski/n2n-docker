@@ -1,0 +1,29 @@
+{
+  "name": "wayback-frontend",
+  "version": "1.0.0",
+  "description": "Frontend for lazy wayback machine",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "sha": "echo $(git rev-parse HEAD)",
+    "docker-build": "docker build -t rosskukulinski/wayback-frontend .",
+    "docker-tag-sha": "docker tag -f rosskukulinski/wayback-frontend:latest rosskukulinski/wayback-frontend:$(git rev-parse HEAD)",
+    "docker-push": "docker push rosskukulinski/wayback-frontend:$(git rev-parse HEAD)",
+    "docker-all": "npm run docker-build && npm run docker-tag-sha && npm run docker-push"
+  },
+  "repository": "https://github.com/rosskukulinski/n2n-docker",
+  "author": "Ross Kukulinski <ross@nodesource.com>",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.15.1",
+    "bull": "^1.0.0-rc2",
+    "dnscache": "0.0.4",
+    "express": "^4.13.4",
+    "express-hbs": "^1.0.1",
+    "moment": "^2.13.0",
+    "morgan": "^1.7.0",
+    "pkginfo": "^0.4.0",
+    "rethinkdb": "^2.3.2",
+    "wayback": "^0.18.0"
+  }
+}

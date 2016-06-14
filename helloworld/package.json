@@ -10,6 +10,5 @@
   "author": "Ross Kukulinski <ross@nodesource.com>",
   "license": "MIT",
   "dependencies": {
-    "redis": "^2.6.1"
   }
 }

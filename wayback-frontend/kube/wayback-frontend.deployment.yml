@@ -1,0 +1,34 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: wayback-frontend
+  labels:
+    app: wayback-frontend
+    track: stable
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: wayback-frontend
+        track: stable
+    spec:
+      containers:
+        - name: wayback-frontend
+          imagePullPolicy: Always
+          image: rosskukulinski/wayback-frontend:latest
+          ports:
+            - containerPort: 3000
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 3000
+            initialDelaySeconds: 5
+            timeoutSeconds: 5
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: 3000
+            initialDelaySeconds: 2
+            timeoutSeconds: 5

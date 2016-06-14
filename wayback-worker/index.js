@@ -8,6 +8,9 @@ dnscache = require('dnscache')({
 var restify = require('restify');
 var routes = require('./lib/routes');
 var gfs = require('./lib/gfs');
+var queue = require('./lib/queue');
+
+process.title = 'worker';
 
 var port = process.env.PORT || 3000;
 
