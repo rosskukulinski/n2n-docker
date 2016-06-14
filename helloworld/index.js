@@ -1,8 +1,6 @@
 var http = require('http');
 var version = require('./package.json').version;
-
 var port = process.env.PORT || 3000;
-var redisConnected = false;
 
 function handleRequest (request, response) {
   if (request.url === '/healthz') {
