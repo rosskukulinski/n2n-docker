@@ -15,4 +15,4 @@ shotQueue.process(2, function (job, done) {
     responseQueue.add(results);
     done(null, results);
   });
-})
+});

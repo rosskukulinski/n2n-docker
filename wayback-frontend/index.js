@@ -4,11 +4,12 @@ dnscache = require('dnscache')({
   ttl: 300,
   cachesize: 1000
 });
+var db = require('./lib/db');
 
 process.title = 'frontend';
 
 var routes = require('./lib/routes');
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 3001;
 
 var express = require('express');
 var hbs = require('express-hbs');
@@ -34,8 +35,15 @@ app.use(function (error, request, response, next) {
 
 app.use(routes);
 
-var server = app.listen(port, function () {
-    var host = server.address().address;
-    var port = server.address().port;
-    console.log('App is listening on http://%s:%s', host, port);
-});
+db.init(function (err) {
+  if (err) {
+    console.error('Problem setting up rethinkdb, exiting');
+    process.exit(1);
+  }
+  console.log('Connected to rethinkdb');
+  var server = app.listen(port, function () {
+      var host = server.address().address;
+      var port = server.address().port;
+      console.log('App is listening on http://%s:%s', host, port);
+  });
+})

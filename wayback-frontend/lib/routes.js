@@ -2,6 +2,9 @@ var express = require('express');
 var queue = require('./queue');
 var router = express.Router();
 var queue = require('./queue');
+var async = require('async');
+var db = require('./db');
+
 module.exports = router;
 var pkginfo = require('pkginfo')(module);
 
@@ -15,21 +18,50 @@ router.get('/healthz', function healthz (req, res) {
 });
 
 router.get('/', function(req, res) {
-  res.render('index', {
-    content: 'express-hbs example'
-  });
+  var captures;
+  var queueLength;
+  async.parallel([
+    function getCaptures(callback) {
+      db.getCaptures({}, function (err, cap) {
+        captures = cap;
+        return callback(err);
+      });
+    },
+    function getQueueLen(callback) {
+      queue.requestQueueCount(function (err, count) {
+        queueLength = count;
+        return callback(err);
+      })
+    }
+  ], function(err) {
+    if (err) {
+      res.statusCode = 500;
+      return res.end('Oops');
+    }
+    res.render('index', {
+      queueLength: queueLength,
+      captures: captures
+    });
+  })
 });
 
 router.post('/', function(req, res) {
   console.log('request to send some data', req.body);
 
   if (req.body.url) {
-    queue(req.body.url);
+    queue.queue(req.body.url);
   }
 
   if (req.accepts('html')) {
-    res.render('index', {
-      request: 'Your request to index `' + req.body.url + '` has been submitted',
+    db.getCaptures({}, function (err, captures) {
+      if (err) {
+        res.statusCode = 500;
+        return res.end('Oops');
+      }
+      res.render('index', {
+        captures: captures,
+        request: 'Your request to index `' + req.body.url + '` has been submitted',
+      });
     });
   }
   else {

@@ -19,7 +19,7 @@ api.capture = function capture (req, res, next) {
   if (!req.query.url || !validUrl.isUri(req.query.url)) {
     return next(new RErrors.BadRequestError('Invalid URL: ' + req.query.url));
   }
-  worker.captureAndUpload(req.query.url, function (err, results) {
+  worker(req.query.url, function (err, results) {
     res.json(results);
     return next();
   });

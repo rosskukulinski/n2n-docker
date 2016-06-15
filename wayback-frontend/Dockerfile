@@ -10,7 +10,6 @@ COPY package.json /home/nodejs/app/package.json
 RUN npm install --production
 COPY . /home/nodejs/app
 
-EXPOSE 3000
 EXPOSE 3001
 
 CMD ["node", "index.js"]

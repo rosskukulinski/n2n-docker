@@ -4,7 +4,7 @@
   "description": "Service to capture requests for image capture",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "GCLOUD_KEYFILE=~/nodesource-dev-65298a682eed.json GCLOUD_PROJECT=nodesource-dev node index.js",
     "sha": "echo $(git rev-parse HEAD)",
     "docker-build": "docker build -t rosskukulinski/wayback-worker .",
     "docker-tag-sha": "docker tag -f rosskukulinski/wayback-worker:latest rosskukulinski/wayback-worker:$(git rev-parse HEAD)",
