@@ -6,7 +6,6 @@ metadata:
     app: wayback-frontend
     track: stable
 spec:
-  replicas: 1
   template:
     metadata:
       labels:
@@ -22,6 +21,9 @@ spec:
               protocol: TCP
             - containerPort: 3000
               protocol: TCP
+          env:
+            - name: NODE_ENV
+              value: development
           livenessProbe:
             httpGet:
               path: /healthz
