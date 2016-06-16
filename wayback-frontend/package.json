@@ -25,7 +25,6 @@
     "moment": "^2.13.0",
     "morgan": "^1.7.0",
     "pkginfo": "^0.4.0",
-    "rethinkdb": "^2.3.2",
-    "wayback": "^0.18.0"
+    "rethinkdb": "^2.3.2"
   }
 }
