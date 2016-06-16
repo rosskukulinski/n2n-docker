@@ -5,7 +5,7 @@ var _ = require('lodash');
 
 var api = module.exports = {};
 
-var rethinkHost = process.env.RETHINKDB_CLUSTER_SERVICE_HOST || 'localhost';
+var rethinkHost = process.env.RETHINKDB_DRIVER_SERVICE_HOST || 'localhost';
 
 var db = 'wayback';
 var table = 'captures';
