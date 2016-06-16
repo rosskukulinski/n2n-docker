@@ -18,7 +18,9 @@ spec:
           imagePullPolicy: Always
           image: rosskukulinski/wayback-frontend:latest
           ports:
-            - containerPort: 3001
+            - containerPort: 3000
+              protocol: TCP
+            - containerPort: 3000
               protocol: TCP
           livenessProbe:
             httpGet:

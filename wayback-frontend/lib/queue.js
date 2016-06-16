@@ -1,7 +1,8 @@
 var Queue = require('bull');
 var db = require('./db');
 
-var shotQueue = Queue('webshot request', 6379, '127.0.0.1');
+var redisHost = process.env.REDIS_MASTER_SERVICE_HOST || '127.0.0.1'
+var shotQueue = Queue('webshot request', 6379, redisHost);
 
 var api = module.exports = {};
 
@@ -10,7 +11,7 @@ api.queue = function queue(url) {
   shotQueue.add({url: url});
 }
 
-var responseQueue = Queue('webshot finished', 6379, '127.0.0.1');
+var responseQueue = Queue('webshot finished', 6379, redisHost);
 
 responseQueue.process(10, function onSuccess (job, done) {
   console.log('Screenshot was successful', job.data);

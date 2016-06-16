@@ -1,8 +1,10 @@
 var Queue = require('bull');
 var worker = require('./worker');
 
-var shotQueue = Queue('webshot request', 6379, '127.0.0.1');
-var responseQueue = Queue('webshot finished', 6379, '127.0.0.1');
+var redisHost = process.env.REDIS_MASTER_SERVICE_HOST || '127.0.0.1'
+
+var shotQueue = Queue('webshot request', 6379, redisHost);
+var responseQueue = Queue('webshot finished', 6379, redisHost);
 
 shotQueue.process(2, function (job, done) {
   console.log('queue request to process ', job.data.url);

@@ -58,7 +58,7 @@ docker push rosskukulinski/helloworld:v1.0.0
 
 
 ```
-kubectl run helloworld --image=rosskukulinski/helloworld:v1.0.0 --port=3000 --replicas=3 --labels=app=helloworld
+kubectl run helloworld --image=rosskukulinski/helloworld:v1.0.0 --port=3000 --port 8000 --replicas=3 --labels=app=helloworld
 ```
 
 ```

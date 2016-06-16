@@ -1,4 +1,4 @@
-FROM nodesource/node:4
+FROM nodesource/nsolid:v1.3.1
 
 # libfontconfig is a secret dependency of PhantomJS
 # https://github.com/ariya/phantomjs/issues/10904
@@ -16,4 +16,12 @@ COPY package.json /home/nodejs/app/package.json
 RUN npm install --production
 COPY . /home/nodejs/app
 
-CMD ["node", "index.js"]
+EXPOSE 3000
+EXPOSE 8000
+
+ENV NSOLID_APPNAME wayback
+ENV NSOLID_HUB nsolid-registry.nsolid:4001
+ENV NSOLID_SOCKET 8000
+ENV NSOLID_TAGS nsolid-v1.3.1
+
+CMD ["nsolid", "index.js"]
