@@ -1,14 +1,8 @@
 FROM nodesource/node:4
-RUN mkdir -p /home/nodejs/app
-WORKDIR /home/nodejs/app
 
-# Let's hack around setting up ssh key to clone a private github repo.
-RUN mkdir -p /root/.ssh
-ADD id_rsa /root/.ssh/id_rsa
-RUN chmod 700 /root/.ssh/id_rsa
-RUN echo "Host github.com\n\tStrictHostKeyChecking no\n" >> /root/.ssh/config
+ADD https://github.com/Yelp/dumb-init/releases/download/v1.1.1/dumb-init_1.1.1_amd64 /usr/local/bin/dumb-init
+RUN chmod +x /usr/local/bin/dumb-init
 
-COPY package.json /home/nodejs/app/package.json
-RUN npm install
+# ...
 
-CMD ["tar", "-czf", "-", "node_modules"]
+CMD ["dumb-init", "node", "index.js"]
